@@ -1,0 +1,35 @@
+{% extends 'crud/base.html' %}
+{% block content %}
+    {% if user_data %}
+        <table class="min-w-full bg-white border border-gray-300">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="py-3 px-4 text-left">Name</th>
+                    <th class="py-3 px-4 text-left">Class</th>
+                    <th class="py-3 px-4 text-left">Phone Number</th>
+                    <th class="py-3 px-4 text-left">Edit</th>
+                    <th class="py-3 px-4 text-left">Delete</th>
+                </tr>
+            </thead>  
+            <tbody>
+                {% for s in user_data %}
+                    <tr class="border-t border-gray-300">
+                        <td class="py-3 px-4">{{ s.name }}</td>
+                        <td class="py-3 px-4">{{ s.std }}</td>
+                        <td class="py-3 px-4">{{ s.phone_number }}</td>
+                        <td class="py-3 px-4"><a href="{% url 'update' s.id %}"><button class="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-1 rounded">Edit</button></a></td>
+                        <td class="py-3 px-4">
+                            <form method="post" action="{% url 'delete' s.id %}">
+                                {% csrf_token %}
+                                <input type="submit" value="Delete" class="bg-red-500 hover:bg-red-600 text-white font-semibold ml-2 px-3 py-1 rounded">
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}                
+            </tbody>
+        </table>
+    {% else %}
+        <p class="ml-44 mt-10 text-2xl">No Result</p>
+        <a href="{% url 'data' %}"><button class="mt-5 ml-48 bg-blue-500 hover:bg-blue-600 text-white font-semibold px-3 py-1 rounded">Back</button></a>
+    {% endif %}
+{% endblock content %}

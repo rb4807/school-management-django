@@ -1,0 +1,32 @@
+{% extends 'crud/base.html' %}
+{% block content %}
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-md mx-auto bg-white shadow-md rounded-lg px-8 py-6">
+            <h1 class="text-3xl font-semibold mb-6">Create Your Members</h1>
+            <form method="post">
+                {% csrf_token %}
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <!--Name-->
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 font-semibold mb-2">Name</label>
+                        <input type="text" name="name" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500" required></input><br>
+                    </div>
+                    <!--class-->
+                    <div class="mb-4">
+                        <label for="std">Class</label>
+                        <input type="number" name="std" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500" required>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <!--Phone Number-->
+                    <div class="mb-4">
+                        <label for="phone_number">Phone Number</label>
+                        <input type="tel" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500" name="phone_number" step="0.01" required><br>
+                    </div>
+                </div>
+                <input type="submit" value="Save" class="bg-green-500 hover:bg-red-600 text-white font-semibold px-10 py-3 rounded">
+            </form>
+        </div>
+    </div>
+{% endblock content %} 
+

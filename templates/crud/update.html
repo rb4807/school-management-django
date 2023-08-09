@@ -1,0 +1,31 @@
+{% extends 'crud/base.html' %}
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-md mx-auto bg-white shadow-md rounded-lg px-8 py-6">
+        <h1 class="text-3xl font-semibold mb-6">Update Expense</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <!-- Name -->
+                <div class="mb-4">
+                    <label for="name">Name</label>
+                    <input type="text" name="name" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500" required value="{{ member.name }}"></input><br>
+                </div>
+                <!--Class-->
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-semibold" for="std">Class</label>
+                    <input name="std" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500" required value="{{ member.std }}"></input>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+                <!-- Number -->
+                <div class="mb-4">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="number" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500" name="phone_number" step="0.01" value="{{ member.phone_number }}" required></input><br>
+                </div>
+            </div>
+            <input type="submit" value="Save" class="bg-green-500 hover:bg-red-600 text-white font-semibold px-10 py-3 rounded">
+        </form>
+    </div>
+{% endblock content %} 
+

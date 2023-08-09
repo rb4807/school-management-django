@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Schoolt</title>
+        <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+        <link href="{% static 'images/logo.png' %}" rel="website icon" type="png">
+    </head>
+    <body class="bg-gray-100">
+        <div class="container mx-auto px-4 py-8">
+            <nav class="bg-teal-600 text-black flex justify-evenly items-center py-4 px-5">
+                <h1 class=" ml-[5%] text-xl font-bold">SCHOOL</h1>
+                <ul class="text-white">
+                    <div class="grid grid-cols-6 gap-4 mb-4">
+                        {% if user.is_authenticated %}
+                        <li class="text-black">Hello, {{user.first_name}}<li>
+                        <li class="text-black"> 
+                            <a href ="{% url 'logout' %}"  target="blank">Logout</a>       
+                        </li>
+                        {% else %}
+                        <li class="text-black">  
+                            <a href ="{% url 'login' %}" target="blank">Login</a>       
+                        </li>
+                        {% endif %}
+                    </div>
+                </ul>
+            </nav> 
+            <div class="container mx-auto p-6">
+                <div class="flex flex-row justify-evenly gap-4 mb-4">
+                    <h1 class="text-2xl font-semibold mb-4">Student List</h1>
+                    <form action="{% url 'search' %}" method="get">
+                        <input type="search" type="submit" name="query" placeholder="Search" class="w-50 border border-gray-400 rounded px-3 py-2">
+                    </form>
+                    <a href="{% url 'create' %}"><button type="submit" class="bg-blue-500 text-white font-semibold py-2 px-4 rounded">Add Members</button></a>
+                </div>           
+                <tbody>
+                    <tr> 
+                        {% block content %}
+                        {% endblock content %}
+                    </tr>
+                </tbody>
+            </div>    
+        </div>
+    </body>
+</html>
